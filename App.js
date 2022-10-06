@@ -1,117 +1,113 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+// import { useState } from "react";
+// import {
+//   RefreshControl,
+//   ScrollView,
+//   StyleSheet,
+//   Text,
+//   View,
+// } from "react-native";
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+// export default function App() {
+//   const [items, setItems] = useState([
+//     { key: 1, item: "item 1" },
+//     { key: 2, item: "item 2" },
+//     { key: 3, item: "item 3" },
+//     { key: 4, item: "item 4" },
+//     { key: 5, item: "item 5" },
+//     { key: 6, item: "item 6" },
+//     { key: 7, item: "item 7" },
+//     { key: 8, item: "item 8" },
+//     { key: 9, item: "item 9" },
+//     { key: 10, item: "item 10" },
+//     { key: 11, item: "item 11" },
+//     { key: 12, item: "item 12" },
+//     { key: 13, item: "item 13" },
+//   ]);
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+//   const [refreshing, setRefreshing] = useState(false);
 
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+//   const onRefresh = () => {
+//     setRefreshing(true);
+//     setItems([...items, { key: 14, item: "item 15" }]);
+//     setRefreshing(false);
+//   };
+
+//   return (
+//     <ScrollView
+//       refreshControl={
+//         <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
+//       }
+//       style={styles.container}
+//     >
+//       {items.map((item) => {
+//         return (
+//           <View style={styles.item} key={item.key}>
+//             <Text style={styles.text}>{item.item}</Text>
+//           </View>
+//         );
+//       })}
+//     </ScrollView>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//   },
+//   text: {
+//     color: "#FF0000", // Red color
+//     fontSize: 50,
+//     fontStyle: "italic",
+//   },
+//   item: {
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+// });
+
+import { useState } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+
+export default function App() {
+  const [name, setName] = useState("");
+
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>Text Input</Text>
+      <TextInput
+        onChangeText={(value) => setName(value)}
+        style={styles.input}
+        placeholder="Enter your Name"
+      />
+      <Text style={styles.text}>Name: {name}</Text>
     </View>
   );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Hi Hanh nha">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  text: {
+    color: "#FF0000", // Red color
+    fontSize: 50,
+    fontStyle: "italic",
+    alignItems: "center",
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  item: {
+    alignItems: "center",
+    justifyContent: "center",
   },
-  highlight: {
-    fontWeight: '700',
+  input: {
+    width: 300,
+    height: 50,
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: "#FF0000",
+    textAlign: "center",
   },
 });
-
-export default App;
